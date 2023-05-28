@@ -49,16 +49,25 @@
 //비동기 프로그래밍
 
 const fs = require("fs");
+
+// 동기실행
 // console.log("Start");
 
 //두번쨰 인자는 파일을 어떤방식으로 읽을지 지정하는 인코딩
+
+//readFileSync가 동기실행..되는부분
 // let content = fs.readFileSync("./new", "utf-8");
 // console.log(content);
 
 // console.log("finish");
 
+//--------------------------------------------
+//위와 출력결과물이 살짝 바뀜
+
+// 비동기실행(특정 작업이 완료 되었을때 실행할 콜백을 등록해두고, 바로 다음코드로 실행을 넘기는것)
 console.log("Start");
 
+//readFile은 비동기 함수, 콜백함수 등록(error 부터)
 fs.readFile("./new", "utf-8", (error, data) => {
   console.log(data);
 });
