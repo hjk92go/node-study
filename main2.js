@@ -22,3 +22,32 @@ myEmitter.on("test", () => {
 
 //아래는 test라는 이벤트를 직접 발생시키는것
 myEmitter.emit("test");
+
+//node에서 코어모듈에서 가져다 쓸 다양한 함수들이 이벤트 기반으로 동작하도록 설계되어있음
+//콜백을 리스너라고도 함
+
+//하나의 이벤트에대해 여러개의 콜백을 설정할수 잇고, 순서대로 진행된다.
+myEmitter.on("test1", () => {
+  console.log("1");
+});
+myEmitter.on("test1", () => {
+  console.log("2");
+});
+myEmitter.on("test1", () => {
+  console.log("3");
+});
+
+myEmitter.emit("test1");
+
+//myEmitter2라는 객체를 추가한경우에 실행하면
+const myEmitter2 = new EventEmitter();
+
+//아래의 이벤트는 출력안됨. 이벤트의 이름이 같더라도 다른 객체이기떄문에
+//반응하지 않는다.
+
+myEmitter2.on("test1", () => {
+  console.log("4");
+});
+
+//아래와 같이 같은 객체로 해야 반응함
+//myEmitter2.emit("test1");
