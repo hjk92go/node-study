@@ -7,7 +7,7 @@ const http = require("http");
 
 //express 모듈 불러오기
 const express = require("express");
-
+const port = 3000;
 //express 모듈 객체 만들기
 //보통 app 이라는 이름을 사용하지만 다른이름을 써도됨
 const app = express();
@@ -36,6 +36,9 @@ app.get("*", (request, response) => {
   response.end("<>Page Not Available</>");
 });
 
+app.listen(port, () => {
+  console.log(`Example app listening on port ${port}!`);
+});
 //(1) /,
 //(2) /users,
 //(3) /users/:id,
